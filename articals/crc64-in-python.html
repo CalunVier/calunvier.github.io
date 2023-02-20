@@ -59,7 +59,7 @@ class CRC64Hash:
     def __init__(self, data=None, seed=0xFFFFFFFFFFFFFFFF, poly=None, value=None):
         if poly is not None:
             self._poly = poly
-            CRC64Hash.init_crc_table(self)
+            CRC64Hash.init_crc_table()
         self._seed = seed
         if value is None:
             self._value = seed
