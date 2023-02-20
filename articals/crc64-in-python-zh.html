@@ -115,7 +115,7 @@ def crc64(data=None, seed=0xFFFFFFFFFFFFFFFF, poly=0xC96C5795D7870F42, value=Non
 </code>
 </pre>
     <p>
-        你可以完整复制这段代码，并将其保存到名为CRC64.py的文件中。然后直接调用crc64()或CRC64Hash()来使用。其使用方法与其他hashlib的哈希类型相同。
+        你可以完整复制这段代码，并将其保存到名为CRC64.py（<a href="/resource/CRC64.py">点击下载</a>）的文件中。然后直接调用crc64()或CRC64Hash()来使用。其使用方法与其他hashlib的哈希类型相同。
     </p>
     <p>
         这段代码中难以理解的，人类不可读的部分（_crc_table），是用来加速运算的哈希表，该表与多项式值相关。我想，在你了解之后，便可以放心使用。该表使用CRC64Hash.init_crc_table()预生成，并硬编码到程序中。如果初始化时给定非默认多项式（_poly），哈希表会在构造函数中被重新计算。
