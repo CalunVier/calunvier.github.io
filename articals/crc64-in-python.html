@@ -16,6 +16,7 @@
     <p>
         The following uses the code tag to include the content of the original code:
     </p>
+    <pre>
     <code>
 class CRC64Hash:
     _poly = 0xC96C5795D7870F42
@@ -112,6 +113,7 @@ class CRC64Hash:
 def crc64(data=None, seed=0xFFFFFFFFFFFFFFFF, poly=0xC96C5795D7870F42, value=None):
     return CRC64Hash(data, seed, poly, value)
 </code>
+</pre>
     <p>
         You can copy this code in its entirety and save it into a file called CRC64.py. Then use crc64() or CRC64Hash()
         directly. It is used in the same way as other hashlib hash types.
