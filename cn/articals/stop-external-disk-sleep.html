@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+
+<head>
+    <title>一段Python代码阻止你的外置硬盘休眠</title>
+</head>
+
+<body>
+    <a href="/articals/stop-external-disk-sleep.html">英文</a>
+    <h1>一段Python代码阻止你的外置硬盘休眠</h1>
+    <p>
+        由于各种原因，你可能希望你的外置机械硬盘不要休眠。例如你可能希望DMSMR硬盘可以自动整理盘片，或者其他目的。但是往往有一些外置硬盘（盒），可能会强迫硬盘在没有数据读写时进入休眠状态。
+    </p>
+    <p>
+        你可能在互联网上搜索到各种方法来尝试阻止你的硬盘休眠。但这些方法往往不是需要修改复杂的系统设置，就是要求你下载一个“可疑的”二进制程序，并声称该程序会定时读写硬盘。现在这里有一段Python代码，它源代码可见，可以安全的实现与那些程序相同的效果。
+    </p>
+    <p>
+        该Python程序会每隔interval秒读取硬盘的data_length长度数据。该python代码运行在Windows下。如果你希望在类Unix操作系统上运行，你可能需要修改与设备路径相关的逻辑。
+    </p>
+    <p>
+        本代码部分使用ChatGPT生成，同时经过本人修改和测试。本人不保留任何权利，不承担任何责任。如有需要，可以随意使用。
+    </p>
+    <p>
+        以下使用code标签包括的是代码原文：
+    </p>
+    <pre>
+<code>
+import time
+
+# Specify the drive letter to be read
+drive_letter = "E:"
+raw_partition = "\\\\.\\"+drive_letter
+
+# Define the length of data to be read
+data_length = 1024*4
+
+cycle = 0
+
+# Define the time interval for repeated execution (unit: seconds)
+interval = 60
+
+while True:
+    # Open the raw partition file and read data
+    mark = 0
+    with open(raw_partition, "rb") as f:
+        while mark &lt; 1024:
+            data = f.read(data_length)
+            mark += 1
+            # Output the read data
+            print("{}:{}:First {} bytes of {} raw partition: {}".format(cycle, mark, data_length, drive_letter, data))
+            # Wait for a period of time before executing again
+            time.sleep(interval)
+    cycle += 1
+</code>
+</pre>
+
+    <p>你可以完整复制这段代码，并将其保存到名为wakeupdisk.py，修改代码中的盘符后双击运行，或者<a href="/resource/wakeupdisk.py">点击这里</a>下载源代码</p>
+    <p>
+        如果你发现了代码中的错误或有任何改进提议，可以到本站的<a
+            href="https://github.com/CalunVier/calunvier.github.io">Github页面</a>提交issue。同样的，你也无法对你所提交更改的代码保留任何的权利。
+    </p>
+    <p>本代码部分使用ChatGPT生成，并经过本人修改，以使之正确运行。我不能确定AI生成内容的现实来源。如有侵犯到你的权利，本站的<a
+            href="https://github.com/CalunVier/calunvier.github.io">Github页面</a>提交issue。</p>
+</body>
+
+</html>
